@@ -34,6 +34,16 @@ client.connect(err => {
     })
   })
 
+
+  app.get('/products/:id', (req, res) => {
+    const id = ObjectId(req.params.id);
+    productCollection.find(id)
+    .toArray((err,items) => {
+      // console.log("from database", items);  //server er terminal e ashe kina dekhe sure hoar jnno
+      res.send(items);
+    })
+  })
+
   
   app.post("/addProduct",(req, res) => {
       const newProduct = req.body;
